@@ -6,9 +6,11 @@
 #include <Windows.h>
 #include "PlayerManager.h"
 #include "HeroManager.h"
+#include "TeamManager.h"
 using namespace std;
 PlayerManager playermanager;
 HeroManager heromanager;
+TeamManager teammanager;
 
 
 auto PlayerMenu2()
@@ -216,6 +218,33 @@ auto HeroMenu()
 }
 
 
+auto TeamMenu1()
+{
+	system("cls");
+	teammanager.GenerateNewTeam(playermanager, heromanager);
+	cout << "Команди створені" << endl;
+	Sleep(700);
+	system("cls");
+	string action;
+	teammanager.GetTeamInfo(playermanager, heromanager);
+	cout << "1)Повернутися назад" << endl;
+	getline(cin, action);
+}
+auto TeamMenu()
+{
+	string action;
+	while (action != "3")
+	{
+		system("cls");
+		cout << "1)Створити дві комадни" << endl;
+		cout << "2)Повернутися до головного меню" << endl;
+		getline(cin, action);
+		if (action == "1")
+			TeamMenu1();
+	}
+}
+
+
 int main()
 {
 	SetConsoleOutputCP(1251);
@@ -235,5 +264,7 @@ int main()
 			PlayerMenu();
 		if (action == "2")
 			HeroMenu();
+		if (action == "3")
+			TeamMenu();
 	}
 }

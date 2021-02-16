@@ -27,7 +27,7 @@ public:
 		return used_name;
 	}
 
-	auto DeletePlayer(string PlayerName, int PlayerId)  //÷ей метод видал€Ї гравц€ ≥з списку за допомогою ≥м'€ або id
+	auto DeletePlayer(string PlayerName, int PlayerId)  //This method removes a player from the list by name or id
 	{
 		for (auto i : PlayerList)
 		{
@@ -48,7 +48,7 @@ public:
 
 	auto GetHeroByName(string PlayerName)
 	{
-		bool exist = false;     //якщо гравц€ з таким ≥м'€м не ≥снуЇ, метод повертаЇ exist = false
+		bool exist = false;     //If a player with that name does not exist, the method returns exist = false
 		for (auto i : PlayerList)
 		{
 			if (PlayerName == i.return_name())
@@ -63,7 +63,7 @@ public:
 
 	auto GetHeroById(int PlayerId)
 	{
-		bool exist = false;       //якщо гравц€ з таким id не ≥снуЇ, метод повертаЇ exist = false
+		bool exist = false;       //If a player with this id does not exist, the method returns exist = false
 		for (auto i : PlayerList)
 		{
 			if (PlayerId == i.return_id())
@@ -81,7 +81,7 @@ public:
 		return PlayerList.size();
 	}
 
-	auto make_a_copy(Player player1, Player copy)      //ћетод робить коп≥ю елемента ј ≥ вертаЇ њњ
+	auto make_a_copy(Player player1, Player copy)      //The method makes a copy of element A and returns it
 	{
 		copy.add_name(player1.return_name());
 		copy.add_id(player1.return_id());
@@ -89,8 +89,8 @@ public:
 		return copy;
 	}
 
-	auto return_player(int numb)    //n - випадке число; метод знаходить елемент за номером, робить його коп≥ю	  
-	{                            //та ставить елемент в к≥нець(таким чином цей елемент не буде повторюватис€)
+	auto return_player(int numb)    //n - random number; the method finds the element by number, makes a copy  
+	{                            //and puts an element at the end (so this element will not be repeated)
 		int count = 1;
 		for (auto i : PlayerList)
 		{

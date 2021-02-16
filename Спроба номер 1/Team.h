@@ -11,7 +11,7 @@ private:
 	list<pair <Player, Hero>> TeamList;
 public:
 
-	auto add_to_team(pair <Player, Hero> PlayerHero)   //Дві команди записуються в один лист
+	auto add_to_team(pair <Player, Hero> PlayerHero)   //Two teams are written in one letter
 	{
 		TeamList.push_back(PlayerHero);
 	}

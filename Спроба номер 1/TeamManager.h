@@ -23,12 +23,12 @@ public:
 		{
 			if (numb_of_players > 0)
 			{
-				random = rand() % numb_of_players + 1;            //Вибирається випадкове число від 1 до кількості гравців
-				a = playerManager.return_player(random);  //Присвоєння для а , елемент під номером який вибрався випадково
-				numb_of_players--;               //Оскільки в методі return_player взятий елемент переставляється в кінець           
-			}                                                        //numb_of_players-- щоб не взяти той елемент повторно
+				random = rand() % numb_of_players + 1;            //A random number from 1 to the number of players is selected
+				a = playerManager.return_player(random);  //Assignment for a, the element under number which was chosen casually
+				numb_of_players--;               //Because in the return_player method the taken element is moved to the end           
+			}                                                        //numb_of_players-- so as not to take that item again
 			else
-				a = playerManager.bot();                                //Якщо гравців невистачає, в команду додаются боти
+				a = playerManager.bot();                                //If there are not enough players, bots are added to the team
 
 			if (numb_of_heroes > 0)
 			{
@@ -47,9 +47,9 @@ public:
 	auto GetTeamInfo(PlayerManager& playerManager, HeroManager& heroManager)
 	{
 		cout << endl;
-		cout << "((((((Перша команда))))))" << endl;               //Оскільки всі гравці були добавленні в один лист,
-		cout << endl;                                       //спочатку виводяться гравці від 1 до 5, які є учасниками
-		for (int i = 1; i <= 5; i++)           //першої команди, а потім гравці від 6 до 10, які є учасниками другої.
+		cout << "((((((Перша команда))))))" << endl;               //Since all players were added to one sheet,
+		cout << endl;                                       //players 1 to 5 who are participants are displayed first
+		for (int i = 1; i <= 5; i++)           //the first team, and then the players from 6 to 10 who are members of the second.
 		{
 			cout << "" << i << ")";
 			playerManager.ShowPlayerInfo(T.return_pair(i).first);

@@ -13,7 +13,7 @@ public:
 	auto CreateHero(string HeroName, int HeroDamage, int HeroHp)
 	{
 		bool used_name = true;
-		for (auto i : HeroList)     //ѕерев≥рка на те, чи введене ≥м'€ в≥льне
+		for (auto i : HeroList)     //Check if the entered name is free
 		{
 			if (HeroName == i.return_name())
 				return used_name;
@@ -48,7 +48,7 @@ public:
 
 	auto GetHeroByName(string HeroName)
 	{
-		bool exist = false;    //якщо геро€ з таким ≥м'€м не ≥снуЇ, метод повертаЇ exist = false
+		bool exist = false;    //If a hero with that name does not exist, the method returns exist = false
 		for (auto i : HeroList)
 		{
 			if (HeroName == i.return_name())
@@ -64,7 +64,7 @@ public:
 
 	auto GetHeroById(int HeroId)
 	{
-		bool exist = false;     //якщо геро€ з таким id не ≥снуЇ, метод повертаЇ exist = false
+		bool exist = false;     //If the hero with such id does not exist, the method returns exist = false
 		for (auto i : HeroList)
 		{
 			if (HeroId == i.return_id())
@@ -83,7 +83,7 @@ public:
 		return HeroList.size();
 	}
 
-	auto make_a_copy(Hero hero1, Hero copy)    //÷ей метод робить коп≥ю геро€ ≥ повертаЇ його
+	auto make_a_copy(Hero hero1, Hero copy)    //This method makes a copy of the hero and returns it
 	{
 		copy.add_name(hero1.return_name());
 		copy.add_id(hero1.return_id());
@@ -102,8 +102,8 @@ public:
 		return bot;
 	}
 
-	auto return_hero(int numb)   //n - випадке число; метод знаходить елемент за номером, робить його коп≥ю	                      
-	{                         //та ставить елемент в к≥нець(таким чином цей елемент не буде повторюватис€)
+	auto return_hero(int numb)   //n - random number; the method finds the element by number, makes a copy                    
+	{                         //and puts an element at the end (so this element will not be repeated)
 		int count = 1;
 		for (auto i : HeroList)
 		{
