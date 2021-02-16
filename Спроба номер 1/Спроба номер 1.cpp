@@ -7,10 +7,13 @@
 #include "PlayerManager.h"
 #include "HeroManager.h"
 #include "TeamManager.h"
+#include "Session.h"
 using namespace std;
 PlayerManager playermanager;
 HeroManager heromanager;
 TeamManager teammanager;
+Session session;
+string winner;
 
 
 auto PlayerMenu2()
@@ -233,7 +236,7 @@ auto TeamMenu1()
 auto TeamMenu()
 {
 	string action;
-	while (action != "3")
+	while (action != "2")
 	{
 		system("cls");
 		cout << "1)Створити дві комадни" << endl;
@@ -244,6 +247,30 @@ auto TeamMenu()
 	}
 }
 
+auto SessionMenu()
+{
+	int n = 1;
+	system("cls");
+	session.TeamOne(teammanager);
+	session.TeamTwo(teammanager);
+	winner = session.Winner();
+	session.CalculateWinner(winner, teammanager, playermanager);
+	if (winner == "1")
+	{
+		cout << "Перемогла перша команда";
+	}
+	if (winner == "2")
+	{
+		cout << "Виграла друга команда";
+	}
+	if (winner == "0")
+	{
+		cout << "Нічія";
+	}
+	if (winner == "-1")
+		cout << "Команди ще не створені";
+	Sleep(1000);
+}
 
 int main()
 {
@@ -266,5 +293,7 @@ int main()
 			HeroMenu();
 		if (action == "3")
 			TeamMenu();
+		if (action == "4")
+			SessionMenu();
 	}
 }
