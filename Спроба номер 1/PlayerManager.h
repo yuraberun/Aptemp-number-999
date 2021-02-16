@@ -75,4 +75,59 @@ public:
 		}
 		return exist;
 	}
+
+	auto return_size()
+	{
+		return PlayerList.size();
+	}
+
+	auto make_a_copy(Player player1, Player copy)      //Метод робить копію елемента А і вертає її
+	{
+		copy.add_name(player1.return_name());
+		copy.add_id(player1.return_id());
+		copy.add_rank(player1.return_rank());
+		return copy;
+	}
+
+	auto return_player(int numb)    //n - випадке число; метод знаходить елемент за номером, робить його копію	  
+	{                            //та ставить елемент в кінець(таким чином цей елемент не буде повторюватися)
+		int count = 1;
+		for (auto i : PlayerList)
+		{
+			if (numb == count)
+			{
+				copy = make_a_copy(i, copy);
+				PlayerList.remove(i);
+				PlayerList.push_back(copy);
+				break;
+			}
+			count++;
+		}
+		return copy;
+
+	}
+
+	auto bot()
+	{
+		Player bot;
+		bot.add_name("PlayerBot");
+		bot.add_id(0);
+		bot.add_rank(0);
+		return bot;
+	}
+
+	auto update_rank(Player player1, int update_rank)
+	{
+		for (auto i : PlayerList)
+		{
+			if (player1.return_id() == i.return_id())
+			{
+				make_a_copy(i, player1);
+				PlayerList.remove(i);
+				player1.add_rank(25);
+				PlayerList.push_back(player1);
+			}
+		}
+
+	}
 };

@@ -77,4 +77,45 @@ public:
 		}
 		return exist;
 	}
+
+	auto return_size()
+	{
+		return HeroList.size();
+	}
+
+	auto make_a_copy(Hero hero1, Hero copy)    //Цей метод робить копію героя і повертає його
+	{
+		copy.add_name(hero1.return_name());
+		copy.add_id(hero1.return_id());
+		copy.add_damage(hero1.return_damage());
+		copy.add_hp(hero1.return_hp());
+		return copy;
+	}
+
+	auto bot()
+	{
+		Hero bot;
+		bot.add_name("HeroBot");
+		bot.add_id(0);
+		bot.add_damage(rand() % 20 + 10);
+		bot.add_hp(rand() % 50 + 25);
+		return bot;
+	}
+
+	auto return_hero(int numb)   //n - випадке число; метод знаходить елемент за номером, робить його копію	                      
+	{                         //та ставить елемент в кінець(таким чином цей елемент не буде повторюватися)
+		int count = 1;
+		for (auto i : HeroList)
+		{
+			if (numb == count)
+			{
+				copy = make_a_copy(i, copy);
+				HeroList.remove(i);
+				HeroList.push_back(copy);
+				break;
+			}
+			count++;
+		}
+		return copy;
+	}
 };
