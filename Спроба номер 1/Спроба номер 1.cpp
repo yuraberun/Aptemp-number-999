@@ -8,12 +8,14 @@
 #include "HeroManager.h"
 #include "TeamManager.h"
 #include "Session.h"
+#include "GameManager.h"
 using namespace std;
 PlayerManager playermanager;
 HeroManager heromanager;
 TeamManager teammanager;
+GameManager gamemanager;
 Session session;
-string winner;
+string winner,rezult;
 
 
 auto PlayerMenu2()
@@ -254,18 +256,23 @@ auto SessionMenu()
 	session.TeamOne(teammanager);
 	session.TeamTwo(teammanager);
 	winner = session.Winner();
-	session.CalculateWinner(winner, teammanager, playermanager);
 	if (winner == "1")
 	{
 		cout << "Перемогла перша команда";
+		rezult = "Перемогла перша команда";
+		gamemanager.add_fight_to_list(rezult);
 	}
 	if (winner == "2")
 	{
 		cout << "Виграла друга команда";
+		rezult = "Перемогла друга команда";
+		gamemanager.add_fight_to_list(rezult);
 	}
 	if (winner == "0")
 	{
 		cout << "Нічія";
+		rezult = "Нічія";
+		gamemanager.add_fight_to_list(rezult);
 	}
 	if (winner == "-1")
 		cout << "Команди ще не створені";
@@ -295,5 +302,11 @@ int main()
 			TeamMenu();
 		if (action == "4")
 			SessionMenu();
+		if (action == "5")
+		{
+			gamemanager.show_list_of_fights();
+			cout << "1)Повернутися назад" << endl;
+			cin >> action;
+		}
 	}
 }
