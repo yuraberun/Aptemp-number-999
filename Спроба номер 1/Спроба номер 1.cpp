@@ -5,8 +5,10 @@
 #include <vector>
 #include <Windows.h>
 #include "PlayerManager.h"
+#include "HeroManager.h"
 using namespace std;
 PlayerManager playermanager;
+HeroManager heromanager;
 
 
 auto PlayerMenu2()
@@ -109,6 +111,111 @@ auto PlayerMenu()
 }
 
 
+auto HeroMenu2()
+{
+	string action, name;
+	int id;
+	bool exist;
+	system("cls");
+	cout << "1)Знайти героя за ім'ям" << endl;
+	cout << "2)Знайти героя за id" << endl;
+	getline(cin, action);
+	if (action == "1")
+	{
+		system("cls");
+		cout << "Введіть ім'я: ";
+		cin >> name;
+		exist = heromanager.GetHeroByName(name);
+		if (exist)
+		{
+			cout << "1)Видалити цього героя" << endl;
+			cout << "2)Повернутися назад" << endl;
+			cin >> action;
+			if (action == "1")
+			{
+				system("cls");
+				heromanager.DeletePlayer(name, 0);
+				cout << "Герой видалений";
+				Sleep(700);
+			}
+		}
+		else
+		{
+			cout << "Героя з таким ім'ям не існує";
+			Sleep(700);
+		}
+		action = "";
+	}
+	if (action == "2")
+	{
+		system("cls");
+		cout << "Введіть id: ";
+		cin >> id;
+		exist = heromanager.GetHeroById(id);
+		if (exist)
+		{
+			cout << "1)Видалити цього героя" << endl;
+			cout << "2)Повернутися назад" << endl;
+			cin >> action;
+			if (action == "1")
+			{
+				system("cls");
+				heromanager.DeletePlayer("", id);
+				cout << "Герой видалений";
+				Sleep(700);
+			}
+		}
+		else
+		{
+			cout << "Героя з таким id не існує";
+			Sleep(700);
+		}
+	}
+}
+auto HeroMenu1()
+{
+	int damage, hp;
+	bool copy;
+	string action, name;
+	system("cls");
+	cout << "Придумайте ім'я для героя: ";
+	cin >> name;
+	cout << "Damage: ";
+	cin >> damage;
+	cout << "Hp: ";
+	cin >> hp;
+	copy = heromanager.CreateHero(name, damage, hp);
+	while (copy)
+	{
+		system("cls");
+		cout << "Це ім'я уже зайняте" << endl;
+		cout << "Придумайте нове: ";
+		cin >> name;
+		copy = heromanager.CreateHero(name, damage, hp);
+	}
+	cout << "Герой створенний";
+	Sleep(700);
+}
+auto HeroMenu()
+{
+	{
+		string action;
+		while (action != "3")
+		{
+			system("cls");
+			cout << "1)Додати героя" << endl;
+			cout << "2)Профіль героя" << endl;
+			cout << "3)Повернутися в головне меню" << endl;
+			getline(cin, action);
+			if (action == "1")
+				HeroMenu1();
+			if (action == "2")
+				HeroMenu2();
+		}
+	}
+}
+
+
 int main()
 {
 	SetConsoleOutputCP(1251);
@@ -126,5 +233,7 @@ int main()
 		getline(cin, action);
 		if (action == "1")
 			PlayerMenu();
+		if (action == "2")
+			HeroMenu();
 	}
 }
